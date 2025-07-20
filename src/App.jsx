@@ -1,10 +1,16 @@
 import { useState } from "react";
 
 function App() {
-  const listProducts = ["prodotto 1", "prodotto 2", "prodotto 3", "prodotto 4"];
-  console.log(listProducts);
-  const [newProduct, setNewProduct] = useState("");
-  const [products, setNewProducts] = useState(listProducts);
+  const listItems = ["prodotto 1", "prodotto 2", "prodotto 3", "prodotto 4"];
+  console.log(listItems);
+  const [newItems, setNewItem] = useState("");
+  const [items, setItems] = useState(listItems);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(newItems);
+    setItems([newItems, ...items]);
+  };
 
   return (
     <>
@@ -12,22 +18,25 @@ function App() {
         <h1>bazar</h1>
 
         <ul className="list-group">
-          {products.map((products, index) => {
+          {items.map((item, index) => (
             <li key={index} className="list-unstyled ">
-              {products}
-            </li>;
-            console.log(products);
-          })}
+              {item}
+            </li>
+          ))}
         </ul>
         <div className="d-flex">
           <input
             type="text"
             className="form-control mt-2"
             placeholder="insert new task"
-            value={newProduct}
-            onChange={(e) => setNewProduct(e.target.value)}
+            value={newItems}
+            onChange={(e) => setNewItems(e.target.value)}
           />
+          <button type="submit" className="btn">
+            <i className="bi bi-plus-circle"></i>save
+          </button>
         </div>
+        <p>{newItems}</p>
       </div>
     </>
   );
