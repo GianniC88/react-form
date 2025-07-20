@@ -6,11 +6,11 @@ function App() {
   const [newItems, setNewItem] = useState("");
   const [items, setItems] = useState(listItems);
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     console.log(newItems);
     setItems([newItems, ...items]);
-  };
+  }
 
   return (
     <>
@@ -24,19 +24,21 @@ function App() {
             </li>
           ))}
         </ul>
-        <div className="d-flex">
-          <input
-            type="text"
-            className="form-control mt-2"
-            placeholder="insert new task"
-            value={newItems}
-            onChange={(e) => setNewItems(e.target.value)}
-          />
-          <button type="submit" className="btn">
-            <i className="bi bi-plus-circle"></i>save
-          </button>
-        </div>
-        <p>{newItems}</p>
+        <form onSubmit={handleSubmit}>
+          <div className="d-flex">
+            <input
+              type="text"
+              className="form-control mt-2"
+              placeholder="insert new task"
+              value={newItems}
+              onChange={(e) => setNewItem(e.target.value)}
+            />
+            <button type="submit" className="btn">
+              <i className="bi bi-plus-circle"></i>save
+            </button>
+          </div>
+          <p>{newItems}</p>
+        </form>
       </div>
     </>
   );
