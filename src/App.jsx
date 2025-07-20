@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const listProducts = ["prodotto 1", "prodotto 2", "prodotto 3", "prodotto 4"];
+  console.log(listProducts);
+  const [newProduct, setNewProduct] = useState("");
+  const [products, setNewProducts] = useState(listProducts);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container p-5">
+        <h1>bazar</h1>
+
+        <ul className="list-group">
+          {products.map((products, index) => {
+            <li key={index} className="list-unstyled ">
+              {products}
+            </li>;
+            console.log(products);
+          })}
+        </ul>
+        <div className="d-flex">
+          <input
+            type="text"
+            className="form-control mt-2"
+            placeholder="insert new task"
+            value={newProduct}
+            onChange={(e) => setNewProduct(e.target.value)}
+          />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
