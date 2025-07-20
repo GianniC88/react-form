@@ -12,15 +12,27 @@ function App() {
     setItems([newItems, ...items]);
   }
 
+  // Funzione per rimuovere un elemento
+  function removeItem(indexToRemove) {
+    const filteredItems = items.filter(
+      (item, index) => index !== indexToRemove
+    );
+    setItems(filteredItems);
+  }
+
   return (
     <>
       <div className="container p-5">
         <h1>bazar</h1>
 
-        <ul className="list-group">
+        <ul className="list-group ">
           {items.map((item, index) => (
-            <li key={index} className="list-unstyled ">
+            <li key={index} className="list-unstyled m-1 ">
               {item}
+
+              <button className="m-2" onClick={() => removeItem(index)}>
+                <i class="bi bi-x-circle-fill "></i>
+              </button>
             </li>
           ))}
         </ul>
@@ -33,8 +45,8 @@ function App() {
               value={newItems}
               onChange={(e) => setNewItem(e.target.value)}
             />
-            <button type="submit" className="btn">
-              <i className="bi bi-plus-circle"></i>save
+            <button type="submit" className="btn ">
+              <i className="bi bi-plus-circle "></i>save
             </button>
           </div>
           <p>{newItems}</p>
